@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
+  image_transport
 )
 
 find_package( OpenCV REQUIRED )
