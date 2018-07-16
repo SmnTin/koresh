@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   image_transport
+  cv_bridge
 )
 
 find_package( OpenCV REQUIRED )
@@ -212,7 +213,7 @@ add_executable(joy_node src/JoyNode.cpp)
 target_link_libraries(joy_node ${catkin_LIBRARIES})
 add_dependencies(joy_node koresh_generate_messages_cpp)
 
-add_executable(line_node src/LineNode.cpp src/LineDetector.cpp src/LineDetector.h src/LineType.h src/Line.h src/RedLine.cpp src/RedLine.h)
+add_executable(line_node src/LineNode.cpp src/LineDetector.cpp src/LineDetector.h src/LineType.h src/Line.h src/BlueLine.cpp src/BlueLine.h)
 target_link_libraries(line_node ${catkin_LIBRARIES})
 target_link_libraries(line_node ${OpenCV_LIBS} )
 add_dependencies(line_node koresh_generate_messages_cpp)

@@ -18,6 +18,9 @@ using namespace std;
 class LineType {
 public:
     cv::Scalar lb, ub;
+
+    //-1 if no color conversion needed (leave BGR)
+    int colorConversionFlag;
     virtual void processResults(const vector<Line> & lines, cv::Mat drawing) {}
 };
 
