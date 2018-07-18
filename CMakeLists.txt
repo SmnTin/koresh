@@ -14,7 +14,11 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   image_transport
   cv_bridge
+  tf
+  roslaunch
 )
+
+roslaunch_add_file_check(launch)
 
 find_package( OpenCV REQUIRED )
 
@@ -205,7 +209,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(robot_node src/RobotNode.cpp src/Car.cpp src/Car.h src/Movement.cpp src/Movement.h src/config.h src/Callback.h src/Joy.cpp src/Joy.h src/MovementController.h)
+add_executable(robot_node src/RobotNode.cpp src/Car.cpp src/Car.h src/Movement.cpp src/Movement.h src/config.h src/Callback.h src/Joy.cpp src/Joy.h src/MovementController.h src/MoveBase.cpp src/MoveBase.h)
 target_link_libraries(robot_node ${catkin_LIBRARIES})
 add_dependencies(robot_node koresh_generate_messages_cpp)
 

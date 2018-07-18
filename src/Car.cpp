@@ -3,6 +3,7 @@
 #include "Movement.h"
 
 #include "Joy.h"
+#include "MoveBase.h"
 
 Car* Car::s_pInstance = 0;
 
@@ -21,6 +22,7 @@ bool Car::init(ros::NodeHandle * _node) {
         return false;
     }
     Movement::Instance()->registerMovementController(new Joy());
+//    Movement::Instance()->registerMovementController(new MoveBase());
 
     return true;
 }

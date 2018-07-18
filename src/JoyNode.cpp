@@ -1,6 +1,7 @@
 #include <ros/ros.h>
 #include <koresh/NewTwist.h>
 #include <sstream>
+
 #include <termios.h>
 #include <unistd.h>
 #include <assert.h>
@@ -10,10 +11,10 @@
 *     2 3 4
 */
 bool acceleration = false;
-int speedDefault = 400; // Vel without acceleration
-int accelerate = 2; // Coff for acceleration
-int angularCoff = 10; // Coff for angular motion
-int angularLimitCoff = 16; // Coff for angular limited motion
+double speedDefault = 80; // Vel without acceleration
+double accelerate = 2; // Coff for acceleration
+double angularCoff = 100; // Coff for angular motion
+double angularLimitCoff = 400; // Coff for angular limited motion
 
 const double PI = 3.1415926;
 
@@ -40,20 +41,20 @@ int main(int argc, char **argv){
 		in = getch();
 		switch(in){
 			case 119: // Вперёд (w)
-				msg.linear_vel = -speedDefault;
+				msg.linear_vel = speedDefault;
 				msg.orient = PI/2;
 				break;
 			case 97:  // Лево (a)
 				msg.linear_vel = -speedDefault/angularCoff;
-				msg.angle_vel = speedDefault/angularLimitCoff;
+				msg.angle_vel = -speedDefault/angularLimitCoff;
 				break;
 			case 115: // Назад (s)
 				msg.linear_vel = speedDefault;
-				msg.orient = PI/2;
+				msg.orient = -PI/2;
 				break;
 			case 100: // Право (d)
-				msg.linear_vel = -speedDefault/angularCoff;
-				msg.angle_vel = -speedDefault/angularLimitCoff;
+				msg.linear_vel = speedDefault/angularCoff;
+				msg.angle_vel = speedDefault/angularLimitCoff;
 				break;
 			case 113: // (q)
 				msg.linear_vel = -speedDefault;
