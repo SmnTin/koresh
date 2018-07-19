@@ -45,16 +45,16 @@ int main(int argc, char **argv){
 				msg.orient = PI/2;
 				break;
 			case 97:  // Лево (a)
-				msg.linear_vel = -speedDefault/angularCoff;
-				msg.angle_vel = -speedDefault/angularLimitCoff;
+//				msg.linear_vel = -speedDefault/angularCoff;
+				msg.angle_vel = +speedDefault/angularLimitCoff;
 				break;
 			case 115: // Назад (s)
 				msg.linear_vel = speedDefault;
 				msg.orient = -PI/2;
 				break;
 			case 100: // Право (d)
-				msg.linear_vel = speedDefault/angularCoff;
-				msg.angle_vel = speedDefault/angularLimitCoff;
+//				msg.linear_vel = speedDefault/angularCoff;
+				msg.angle_vel = -speedDefault/angularLimitCoff;
 				break;
 			case 113: // (q)
 				msg.linear_vel = -speedDefault;

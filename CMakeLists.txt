@@ -217,6 +217,10 @@ add_executable(joy_node src/JoyNode.cpp)
 target_link_libraries(joy_node ${catkin_LIBRARIES})
 add_dependencies(joy_node koresh_generate_messages_cpp)
 
+add_executable(map_filter_node src/MapFilterNode.cpp)
+target_link_libraries(map_filter_node ${catkin_LIBRARIES})
+add_dependencies(map_filter_node koresh_generate_messages_cpp)
+
 add_executable(line_node src/LineNode.cpp src/LineDetector.cpp src/LineDetector.h src/LineType.h src/Line.h src/BlueLine.cpp src/BlueLine.h)
 target_link_libraries(line_node ${catkin_LIBRARIES})
 target_link_libraries(line_node ${OpenCV_LIBS} )

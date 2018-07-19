@@ -22,7 +22,7 @@ bool Car::init(ros::NodeHandle * _node) {
         return false;
     }
     Movement::Instance()->registerMovementController(new Joy());
-//    Movement::Instance()->registerMovementController(new MoveBase());
+    Movement::Instance()->registerMovementController(new MoveBase());
 
     return true;
 }
