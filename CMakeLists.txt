@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   tf
   roslaunch
+  obstacle_detector
 )
 
 roslaunch_add_file_check(launch)
@@ -62,7 +63,7 @@ find_package( OpenCV REQUIRED )
 #   Message2.msg
 # )
 
-add_message_files(DIRECTORY msg FILES NewTwist.msg ArduOdom.msg)
+add_message_files(DIRECTORY msg FILES NewTwist.msg ArduOdom.msg Obstacles.msg)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -209,19 +210,27 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(robot_node src/RobotNode.cpp src/Car.cpp src/Car.h src/Movement.cpp src/Movement.h src/config.h src/Callback.h src/Joy.cpp src/Joy.h src/MovementController.h src/MoveBase.cpp src/MoveBase.h)
+add_executable(robot_node src/RobotNode/RobotNode.cpp src/RobotNode/Car.cpp src/RobotNode/Car.h src/RobotNode/Movement.cpp src/RobotNode/Movement.h src/config.h src/Callback.h src/RobotNode/Joy.cpp src/RobotNode/Joy.h src/RobotNode/MovementController.h src/RobotNode/MoveBase.cpp src/RobotNode/MoveBase.h)
 target_link_libraries(robot_node ${catkin_LIBRARIES})
 add_dependencies(robot_node koresh_generate_messages_cpp)
 
-add_executable(joy_node src/JoyNode.cpp)
+add_executable(joy_node src/JoyNode/JoyNode.cpp)
 target_link_libraries(joy_node ${catkin_LIBRARIES})
 add_dependencies(joy_node koresh_generate_messages_cpp)
 
-add_executable(map_filter_node src/MapFilterNode.cpp)
+add_executable(map_filter_node src/MapFilterNode/MapFilterNode.cpp)
 target_link_libraries(map_filter_node ${catkin_LIBRARIES})
 add_dependencies(map_filter_node koresh_generate_messages_cpp)
 
-add_executable(line_node src/LineNode.cpp src/LineDetector.cpp src/LineDetector.h src/LineType.h src/Line.h src/BlueLine.cpp src/BlueLine.h)
+add_executable(moving_obstacles_detector_node src/MovingObstaclesDetectorNode/MovingObstaclesDetector.h src/MovingObstaclesDetectorNode/MovingObstaclesDetector.cpp src/MovingObstaclesDetectorNode/MovingObstaclesDetectorNode.cpp src/Point.h src/MovingObstaclesDetectorNode/Kalman.h)
+target_link_libraries(moving_obstacles_detector_node ${catkin_LIBRARIES})
+add_dependencies(moving_obstacles_detector_node koresh_generate_messages_cpp)
+
+add_executable(moving_obstacles_detector_2_node src/MovingObstaclesDetector2Node/MovingObstaclesDetector2Node.cpp src/Point.h)
+target_link_libraries(moving_obstacles_detector_2_node ${catkin_LIBRARIES})
+add_dependencies(moving_obstacles_detector_2_node koresh_generate_messages_cpp)
+
+add_executable(line_node src/LineNode/LineNode.cpp src/LineNode/LineDetector.cpp src/LineNode/LineDetector.h src/LineNode/LineType.h src/LineNode/Line.h src/LineNode/BlueLine.cpp src/LineNode/BlueLine.h)
 target_link_libraries(line_node ${catkin_LIBRARIES})
 target_link_libraries(line_node ${OpenCV_LIBS} )
 add_dependencies(line_node koresh_generate_messages_cpp)

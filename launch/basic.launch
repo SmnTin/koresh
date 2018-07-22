@@ -11,7 +11,7 @@
     </node>
 
     <node pkg="koresh" type="joy_node" name="joy_node" />
-    <node pkg="koresh" type="robot_node" name="robot_node" />
+    <node pkg="koresh" type="robot_node" name="robot_node" output="screen"/>
 
     <node pkg="tf" type="static_transform_publisher" name="base_link_laser" args="0.15 0 0.14 0 3.1415926 3.1415926 base_link laser 20" />
 

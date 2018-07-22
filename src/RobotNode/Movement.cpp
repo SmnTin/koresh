@@ -53,13 +53,14 @@ void Movement::odometryCallback(const koresh::ArduOdom::ConstPtr & wheel) {
     ros::Time currentOdomTime = ros::Time::now();
 
     vx = -0.25*rwheel*( -wheel->wfl + wheel->wfr - wheel->wrl + wheel->wrr );
-    vy = 0.25*rwheel*( -wheel->wfl - wheel->wfr + wheel->wrl + wheel->wrr );
+    vy = -0.25*rwheel*( -wheel->wfl - wheel->wfr + wheel->wrl + wheel->wrr );
     vth = 0.25*rwheel/(lx+ly)*(-wheel->wfl - wheel->wfr - wheel->wrl - wheel->wrr );
 
     double dt = (currentOdomTime - previousOdomTime).toSec();
 
     double delta_x = (vx * cos(th) - vy * sin(th)) * dt;
     double delta_y = (vx * sin(th) + vy * cos(th)) * dt;
+//    ROS_INFO("AAA %lf", delta_y);
     double delta_th = vth * dt;
 
     x += delta_x;

@@ -1,9 +1,14 @@
 <launch>
 
     <master auto="start"/>
-    <include file="$(find koresh)/launch/basic.launch" />
+    <include file="$(find koresh)/launch/basic.launch" output="screen"/>
     <!-- Run the map server -->
-    <node name="gmapping" pkg="gmapping" type="slam_gmapping"/>
+    <node name="gmapping" pkg="gmapping" type="slam_gmapping">
+           <param name="xmin" value="-5" />
+           <param name="ymin" value="-5" />
+           <param name="xmax" value="5" />
+           <param name="ymax" value="5" />
+    </node>
     <!--- Run AMCL -->
     <include file="$(find amcl)/examples/amcl_omni.launch" />
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
@@ -18,9 +23,9 @@
         <param name="planner_frequency" value="1.0" />
         <param name="planner_patience" value="5.0" />
 
-        <param name="base_local_planner" value="eband_local_planner/EBandPlannerROS" />
-        <param name="controller_frequency" value="15.0" />
-        <param name="controller_patience" value="15.0" />
+        <!--<param name="base_local_planner" value="eband_local_planner/EBandPlannerROS" />-->
+        <!--<param name="controller_frequency" value="15.0" />-->
+        <!--<param name="controller_patience" value="15.0" />-->
 
     </node>
 

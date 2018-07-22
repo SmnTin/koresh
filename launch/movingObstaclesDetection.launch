@@ -1,0 +1,12 @@
+<launch>
+    <node pkg="obstacle_detector" type="obstacle_extractor_node" respawn="false" name="obstacle_extractor" output="screen">
+        <param name="use_scan" value="true" />
+        <param name="use_pcl" value="false" />
+        <!--<param name="transform_coordinates" value="true" />-->
+        <!--<param name="frame_id" value="map" />-->
+    </node>
+    <node pkg="obstacle_detector" type="obstacle_tracker_node" respawn="false" name="obstacle_tracker" output="screen">
+        <!--<param name="frame_id" value="map" />-->
+    </node>
+    <node pkg="koresh" type="moving_obstacles_detector_2_node" respawn="true" name="moving_obstacles_detector_2_node" output="screen" />
+</launch>
